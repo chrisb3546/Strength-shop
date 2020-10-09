@@ -1,5 +1,9 @@
 import React from 'react';
+import data from './data'
+import {BrowserRouter, Route, Link} from 'react-router-dom'
 import './App.css';
+import HomePage from './components/HomePage';
+import ProductPage from './components/ProductPage'
 
 function App() {
   
@@ -14,7 +18,7 @@ function App() {
   
   return (
     
- 
+ <BrowserRouter>
     <div className="grid-container">
       <header className="header">
         <div className="brand">
@@ -22,7 +26,8 @@ function App() {
           <button onClick={openMenu}>
             &#9776;
           </button >
-          <a href="index.html">Strength Shop </a>
+          <Link to='/'>Strength Shop</Link>
+ 
         </div>
         <div className="header-links">
           <a href="login">Log in</a>
@@ -46,22 +51,15 @@ function App() {
       </aside>
       <main className="main">
         <div className="content">
+          <Route  exact path = "/product/:id" component={ProductPage}/>
+          <Route  exact path= "/"  component={HomePage} />
 
-        <ul className="products">
-          <li>
-            <div className="product">
-              <img className="product-image" src='/img/1500-bar.jpg' alt="product"></img>
-              <div className="product-name">
-                <a href="product.html">1500 Bar</a></div>
-              <div className="product-price">$300</div>
-              </div>
-          </li>
-         
-         
-        </ul>
+       
       </div>
       </main>
+      <div id="root"></div>
     </div>
+    </BrowserRouter>
  
   
 
