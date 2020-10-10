@@ -1,24 +1,56 @@
 import React from 'react'
+import {Link} from 'react-router-dom'
 
 
 function Category(props) {
-    console.log(props.match.params.id)
-    console.log(props.location.state.name)
-    let name = props.location.state.name
+    
+    
+
+ let catProducts = props.location.state.products.map(p => <li key={p.id}>
+      <div className="product">
+      {/* <Link to={{
+        pathname:'/product/' + p.id,
+        state: {
+          name: p.name,
+          image: p.image, 
+          price: p.price,
+          description: p.description
+        }
+        
+        }}>
+          </Link> */}
+        <img className="product-image" src={p.image} alt="product"></img>
+        
+        <div className="product-name">
+        {p.name}
+          </div>
+    <div className="product-price">$ {p.price}</div>
+      </div>
+ </li>
+ )
+   
+  
     return (
-        <div>
+        
         <div className="category-show-name">
-            <h1>{name}</h1>
+        <ul className="products">
+          {catProducts}
+          
+        </ul>
+           
+            
 
         </div>
             
-        </div>
+    
     )
 }
+    
 
-Category.propTypes = {
 
-}
+
+
+
 
 export default Category
 

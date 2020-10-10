@@ -26,16 +26,9 @@ export default class CategoryContainer extends Component {
 
     render() {
         
+        this.state.categories.map(cat => console.log(cat))
         let catArray = this.state.categories.map(cat => <li key={cat.id}>
-           <Link to={{
-               pathname:'/categories/' + cat.id ,
-               state: {
-                   name: cat.name,
-                   products: cat.products
-               }
-            } } onClick={this.closeMenu}> 
-            {cat.name} {cat.picture}
-           </Link>
+           
             </li>)
         return (
             <div>

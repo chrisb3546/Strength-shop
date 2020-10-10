@@ -3,8 +3,10 @@ import {BrowserRouter, Route, Link} from 'react-router-dom'
 import data from '../data'
 
 function ProductPage (props) {
-     console.log(props.match.params.id)
-     const product = data.products.find(p => p.id == props.match.params.id )
+    
+    //  console.log(props.location.state)
+     const product = props.location.state
+    //  console.log(product)
         return (
             <div>
                 <div>
