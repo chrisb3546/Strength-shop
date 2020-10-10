@@ -8,7 +8,7 @@ function Category(props) {
 
  let catProducts = props.location.state.products.map(p => <li key={p.id}>
       <div className="product">
-      {/* <Link to={{
+      <Link to={{
         pathname:'/product/' + p.id,
         state: {
           name: p.name,
@@ -18,8 +18,9 @@ function Category(props) {
         }
         
         }}>
-          </Link> */}
-        <img className="product-image" src={p.image} alt="product"></img>
+           <img className="product-image" src={p.image} alt="product"></img>
+          </Link>
+       
         
         <div className="product-name">
         {p.name}

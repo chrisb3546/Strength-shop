@@ -1,29 +1,26 @@
 import React, { Component } from 'react'
 import {BrowserRouter, Route, Link} from 'react-router-dom'
-import data from '../data'
+import {connect} from 'react-redux'
+import {fetchProducts} from "../actions/fetchProducts"
 
 
 class HomePage extends Component {
-  state ={
-    products: []
-  }
+  // state ={
+  //   products: []
+  // }
 
     componentDidMount(){
-    fetch("http://localhost:3001/products")
-    .then(res => res.json())
-    .then(data => this.setState({
-      products: data
-    }))
+    this.props.fetchProducts()
   }
     
         render(){
-          // console.log(this.state)
+          console.log(this.props.products.products)
         return (
             <div>
                 
                  <ul className="products">
           {
-            this.state.products.map(product => <li key={product.id}>
+            this.props.products.products.map(product => <li key={product.id}>
               <div className="product">
               <Link to={{
                 pathname:'/product/' + product.id,
@@ -32,13 +29,13 @@ class HomePage extends Component {
                   price: product.price,
                   image: product.image
                 }
-              }}>>
+              }}>
                 <img className="product-image" src={product.image} alt="product"></img>
                 </Link>
                 <div className="product-name">
                 {product.name}
                   </div>
-            <div className="product-price">{product.price}</div>
+            <div className="product-price">${product.price}</div>
                 </div>
             </li>)
             
@@ -49,6 +46,13 @@ class HomePage extends Component {
             )
         }
       }
+
+      const mapStateToProps = state =>{
+      return {
+        products: state.products
+      }
+
+      }
     
-        export default HomePage
+        export default connect(mapStateToProps, {fetchProducts})(HomePage)
 

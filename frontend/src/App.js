@@ -6,6 +6,7 @@ import HomePage from './components/HomePage';
 import ProductPage from './components/ProductPage'
 import CategoryContainer from './components/CategoryContainer'
 import Category from './components/Category'
+import OrderContainer from './components/OrderContainer'
 
 function App() {
   
@@ -32,7 +33,7 @@ function App() {
         <div className="header-links">
           <a href="login">Log in</a>
           <a href="signup">Sign up</a>
-          <a href="orders">Your Orders</a>
+          <Link to='/orders'>Orders</Link>
         </div>
       </header>
       
@@ -42,6 +43,7 @@ function App() {
           <Route  exact path = "/product/:id" component={ProductPage}/>
           <Route  exact path= "/"  component={HomePage} />
           <Route  exact path='/categories/:id' component={Category}/>
+          <Route  exact path='/orders' component={OrderContainer}/>
 
        
       </div>

@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
 import {Link} from 'react-router-dom'
+import { connect } from 'react-redux'
+import {fetchCategories} from '../actions/fetchCategories'
 
-export default class CategoryContainer extends Component {
+ class CategoryContainer extends Component {
 
     state ={
         categories:[
@@ -9,11 +11,12 @@ export default class CategoryContainer extends Component {
         ]
     }
     componentDidMount (){
-        fetch("http://localhost:3001/categories")
-        .then(res => res.json())
-        .then(data => this.setState({
-            categories: data
-        }))
+        this.props.fetchCategories()
+        // fetch("http://localhost:3001/categories")
+        // .then(res => res.json())
+        // .then(data => this.setState({
+        //     categories: data
+        // }))
 
     
        
@@ -25,11 +28,23 @@ export default class CategoryContainer extends Component {
         
 
     render() {
-        
-        this.state.categories.map(cat => console.log(cat))
-        let catArray = this.state.categories.map(cat => <li key={cat.id}>
+        console.log(this.props)
+        this.props.categories.categories.map(cat => console.log(cat))
+        let catArray = this.props.categories.categories.map(cat => <li className= "sidebar-text"key={cat.id}>
+            <Link to={{
+                pathname: '/categories/'+ cat.id,
+                state:{
+                    name: cat.name,
+                    products: cat.products
+                }
+            }}onClick={this.closeMenu}>
+                {cat.name}
+            </Link>
+            
            
-            </li>)
+           
+            </li>
+            )
         return (
             <div>
                <aside className="sidebar">
@@ -47,3 +62,12 @@ export default class CategoryContainer extends Component {
         )
     }
 }
+
+const mapStateToProps = state => {
+    return{
+        categories: state.categories
+    }
+}
+
+
+export default connect(mapStateToProps, {fetchCategories})(CategoryContainer)

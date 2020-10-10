@@ -115,6 +115,11 @@ body{
 
 }
 
+.sidebar-text{
+  font-size: 2rem;
+  font-weight: bold;
+}
+
 .sidebar.open{
   transform: translateX(0);
   background-color: gray;
