@@ -8,17 +8,21 @@
 
 
 category_list = [
-    "Barbell",
-    "Dumbbell",
-    "Plate",
-    "Sled"
+    "Barbells",
+    "Racks",
+    "Plates",
+    "Sleds"
 ]
 
 
 product_list =[
-    ["Olympic Barbell", 100.00, "placeholder", "Standard Barbell for weight training", 1],
-    ["Strongman Sled", 80.00], "placeholder", "Standard Strong Man Sled", 4,
-    ["45 lb Dumbbell Set",100.00, "placeholder", "Standard dumbbell", 2]
+    
+["Olympic Barbell", 100.00, "https://cdn.shopify.com/s/files/1/0332/6297/products/9_OB20-CH_800x800_1024x1024.png?v=1482208037r", "Standard Barbell for weight training", 1],
+    
+["Strongman Sled", 80.00, "https://www.elitefts.com/media/catalog/product/cache/1/image/1200x/602f0fa2c1f0d1ba5e241f914e856ff9/o/l/old-school-prowler.jpg", "Standard Strong Man Sled", 4],
+    
+["Power Rack",100.00, "https://cdn.shoplightspeed.com/shops/625965/files/13506753/800x1024x1/fpr5b-power-rack-red-and-black.jpg", "Standard Power Rack", 2]
+
 ]
 
 
@@ -26,9 +30,9 @@ order_list = [
     ["Joe", "Schmo", 0.00]
 ]
 order_product_list =[
-    ["Olympic Barbell", 100.00, "https://images.app.goo.gl/PmMQ8JofjELxS2ZB6", "Standard Barbell for weight training", 1, 1],
-    ["Strongman Sled", 80.00, "placeholder", "Standard Strong Man Sled", 1, 4],
-    ["45 lb Dumbbell Set",100.00, "placeholder", "Standard dumbbell", 1, 2]
+    ["Olympic Barbell", 100.00, "https://cdn.shopify.com/s/files/1/0332/6297/products/9_OB20-CH_800x800_1024x1024.png?v=1482208037", "Standard Barbell for weight training", 1, 1],
+    ["Strongman Sled", 80.00, "https://www.elitefts.com/media/catalog/product/cache/1/image/1200x/602f0fa2c1f0d1ba5e241f914e856ff9/o/l/old-school-prowler.jpg", "Standard Strong Man Sled", 1, 4],
+    ["45 lb Dumbbell Set",100.00, "https://www.johnsonfitness.com/Home/ProductImage?sku=SDX45", "Standard dumbbell", 1, 2]
 
 ]
 

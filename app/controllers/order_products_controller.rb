@@ -1,9 +1,9 @@
 class OrderProductsController < ApplicationController
   before_action :set_order_product, only: [:show, :update, :destroy]
-
+  before_action :set_order
   # GET /order_products
   def index
-    @order_products = OrderProduct.all
+    @order_products = @order.order_products
 
     render json: @order_products
   end
@@ -42,6 +42,10 @@ class OrderProductsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_order_product
       @order_product = OrderProduct.find(params[:id])
+    end
+
+    def set_order
+      @order = Order.find(params[:order_id])
     end
 
     # Only allow a trusted parameter "white list" through.
