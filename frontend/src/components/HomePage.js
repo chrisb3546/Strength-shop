@@ -2,13 +2,14 @@ import React, { Component } from 'react'
 import {BrowserRouter, Route, Link} from 'react-router-dom'
 import data from '../data'
 
+
 function HomePage (props) {
 
     
         
         return (
             <div>
-                <h1>HELLO</h1>
+                
                  <ul className="products">
           {
             data.products.map(product => <li key={product.id}>
