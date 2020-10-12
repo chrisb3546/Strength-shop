@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import data from './data'
 import {BrowserRouter, Route, Link} from 'react-router-dom'
 import './App.css';
@@ -7,58 +7,66 @@ import ProductPage from './components/ProductPage'
 import CategoryContainer from './components/CategoryContainer'
 import Category from './components/Category'
 import OrderContainer from './components/OrderContainer'
+import Login from './components/Login'
+import { connect } from 'react-redux'
+import { findCurrentUser } from './actions/currentUser'
 
-function App() {
+class App extends Component {
+
+  componentDidMount(){
+    this.props.findCurrentUser()
+
+  }
   
-  const openMenu = () => {
+   openMenu = () => {
     document.querySelector(".sidebar").classList.add("open")
   }
 
   
- 
-  return (
+ render(){return (
+  <Login />
+  
+//  <BrowserRouter>
+//     <div className="grid-container">
+//       <header className="header">
+//         <div className="brand">
+
+//           <button onClick={openMenu}>
+//             &#9776;
+//           </button >
+//           <Link to='/'>Strength Shop</Link>
+//           <CategoryContainer/>
+//         </div>
+//         <div className="header-links">
+//           <a href="login">Log in</a>
+//           <a href="signup">Sign up</a>
+//           <Link to='/orders'>Orders</Link>
+//         </div>
+//       </header>
     
-    
- <BrowserRouter>
-    <div className="grid-container">
-      <header className="header">
-        <div className="brand">
 
-          <button onClick={openMenu}>
-            &#9776;
-          </button >
-          <Link to='/'>Strength Shop</Link>
-          <CategoryContainer/>
-        </div>
-        <div className="header-links">
-          <a href="login">Log in</a>
-          <a href="signup">Sign up</a>
-          <Link to='/orders'>Orders</Link>
-        </div>
-      </header>
-      
+//       <main className="main">
+//         <div className="content">
+//           <Route  exact path = "/product/:id" component={ProductPage}/>
+//           <Route  exact path= "/"  component={HomePage} />
+//           <Route  exact path='/categories/:id' component={Category}/>
+//           <Route  exact path='/orders' component={OrderContainer}/>
 
-      <main className="main">
-        <div className="content">
-          <Route  exact path = "/product/:id" component={ProductPage}/>
-          <Route  exact path= "/"  component={HomePage} />
-          <Route  exact path='/categories/:id' component={Category}/>
-          <Route  exact path='/orders' component={OrderContainer}/>
+     
+//       </div>
+//       </main>
+//       <div id="root"></div>
+//     </div>
+//     </BrowserRouter>
 
-       
-      </div>
-      </main>
-      <div id="root"></div>
-    </div>
-    </BrowserRouter>
- 
+
+
   
 
-    
-
-  );
+);}
+  
 }
 
 
 
-export default App
+export default  connect(null, {findCurrentUser}) (App)

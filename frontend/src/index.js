@@ -6,6 +6,9 @@ import thunk from 'redux-thunk'
 import {Provider} from 'react-redux'
 import OrderReducer from './reducers/OrderReducer'
 import products from './reducers/products'
+import currentUser from './reducers/currentUser'
+import user from './reducers/user'
+
 
 import categories from './reducers/categories'
 import App from './App';
@@ -14,7 +17,10 @@ const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const rootReducer = combineReducers({
   products,
-  categories
+  categories,
+  currentUser,
+  user 
+  
 })
 let store = createStore(rootReducer, composeEnhancers(applyMiddleware(thunk)))
 ReactDOM.render(

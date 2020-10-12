@@ -6,7 +6,23 @@ function ProductPage (props) {
     
     //  console.log(props.location.state)
      const product = props.location.state
-    //  console.log(product)
+    const addToOrder = () => {
+        fetch("http://localhost:3001/orders/1/order_products", {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': "application/json"
+            }, 
+            body: JSON.stringify({
+                name: product.name,
+                price: product.price,
+                image: product.image,
+                description: product.description
+            })
+            .then(res => res.json())
+            .then(data => console.log("success", data))
+        })
+    }
         return (
             <div>
                 <div>
@@ -31,7 +47,8 @@ function ProductPage (props) {
                                 </br>
                                 {product.description}
                             </div>
-                            <button>Add To Order</button>
+                            
+                                <button onClick={(e, product) => addToOrder()}>Add To Order</button>
                         </ul>
 
                     </div>
