@@ -8,6 +8,7 @@ import CategoryContainer from './components/CategoryContainer'
 import Category from './components/Category'
 import OrderContainer from './components/OrderContainer'
 import Login from './components/Login'
+import Logout from './components/Logout'
 import { connect } from 'react-redux'
 import { findCurrentUser } from './actions/currentUser'
 
@@ -24,7 +25,7 @@ class App extends Component {
 
   
  render(){return (
-  <Login />
+  this.props.currentUser ? <Logout/> : <Login/>
   
 //  <BrowserRouter>
 //     <div className="grid-container">
@@ -67,6 +68,10 @@ class App extends Component {
   
 }
 
+const mapStateToProps = state => {
+  return{
+    currentUser: state.currentUser
+  }
+}
 
-
-export default  connect(null, {findCurrentUser}) (App)
+export default  connect(mapStateToProps, {findCurrentUser}) (App)

@@ -12,15 +12,6 @@ class Logout extends Component  {
         password:''
     }
 
-    handleChange = e => {
-        this.setState({
-            [e.target.name]: e.target.value
-        })
-        
-        
-        
-
-    }
 
     
     
@@ -30,8 +21,6 @@ class Logout extends Component  {
 
      handleSubmit = (e) => {
         
-        e.preventDefault()
-        this.props.logout(this.state)
 
     }
     render(){ 
@@ -39,10 +28,8 @@ class Logout extends Component  {
         
         return (
         <div>
-            <form  onSubmit={this.handleSubmit}>
-                <input type="text" name="username" placeholder="username"  onChange={this.handleChange} ></input>
-                <input type="text" name="password" placeholder="password"  onChange={this.handleChange} ></input>
-                <input type="submit" value= "Log in"/>
+            <form  onSubmit={this.props.logout}>
+                <input type="submit" value= "Log Out"/>
         </form>
             
         </div>
