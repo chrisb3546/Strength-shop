@@ -1,15 +1,22 @@
 export const setCurrentUser = user =>{
-    
-    return{
+     return{
         type: "SET_CURRENT_USER",
         user
     }
 }
 
 export const clearCurrentUser = () => {
+   
     return {
         type: "CLEAR_CURRENT_USER"
     }
+}
+
+export const createNewUser = user =>{
+    return{
+       type: "CREATE_NEW_USER",
+       user
+   }
 }
 
 export const login = credentials => {
@@ -56,7 +63,7 @@ export const findCurrentUser = () => {
     .then(res => res.json())
     .then(user => {
         if(user.error){
-            alert(user.error)
+            console.log(user.error)
         }
         else{
             dispatch(setCurrentUser(user))
@@ -72,11 +79,43 @@ export const findCurrentUser = () => {
 export const logout = () =>  {
     return (dispatch) => {
         dispatch(clearCurrentUser())
-        return fetch("http://localhost3001/delete",{
+        return fetch("http://localhost:3001/logout",{
             credentials: "include",
-            method: "DELETE",
-            
+            method: "DELETE"
         })
     }
 
 }
+
+
+
+export const signup = credentials => {
+   
+    return dispatch => {
+        const userInfo ={
+            user: credentials
+        }
+          return fetch("http://localhost:3001/users", {
+              credentials: "include", 
+                  method: "POST",
+                  headers: {
+                      "Content-Type": "application/json",
+                      "Accept": "application/json"
+  
+                  },
+                  body: JSON.stringify(userInfo)
+          }) 
+          .then(res => res.json())
+          .then(user => {
+              if(user.error){
+                  alert(user.error)
+              }
+              else{
+                  dispatch(setCurrentUser(user))
+              }
+  
+          })
+          
+      }
+  
+  }

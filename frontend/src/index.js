@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import {BrowserRouter, Route, Link} from 'react-router-dom'
 import './index.css';
 import {createStore, applyMiddleware, compose, combineReducers} from 'redux'
 import thunk from 'redux-thunk'
@@ -7,7 +8,7 @@ import {Provider} from 'react-redux'
 import OrderReducer from './reducers/OrderReducer'
 import products from './reducers/products'
 import currentUser from './reducers/currentUser'
-import user from './reducers/user'
+
 
 
 import categories from './reducers/categories'
@@ -19,14 +20,16 @@ const rootReducer = combineReducers({
   products,
   categories,
   currentUser,
-  user 
+   
   
 })
 let store = createStore(rootReducer, composeEnhancers(applyMiddleware(thunk)))
 ReactDOM.render(
   <Provider store = {store}>
-    <App />
-    </Provider>,
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
+  </Provider>,
   document.getElementById('root')
 );
 

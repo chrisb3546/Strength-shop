@@ -1,10 +1,13 @@
 import React, { Component } from 'react'
 import {BrowserRouter, Route, Link} from 'react-router-dom'
-import data from '../data'
+import { connect } from "react-redux"
+import { findCurrentUser } from '../actions/currentUser'
+import Login from './Login'
+
+
 
 function ProductPage (props) {
     
-    //  console.log(props.location.state)
      const product = props.location.state
     const addToOrder = () => {
         fetch("http://localhost:3001/orders/1/order_products", {
@@ -24,11 +27,8 @@ function ProductPage (props) {
         })
     }
         return (
+            
             <div>
-                <div>
-                <Link to="/">Home</Link>
-                </div>
-
                 <div className="product-info">
                     <div className="product-info-img">
                     <img  src={product.image}></img>
@@ -40,7 +40,7 @@ function ProductPage (props) {
                                 <h3>{product.name}</h3>
                             </li>
                             <li>
-                                <b>{product.price}</b>
+                                <b>$ {product.price}</b>
                             </li>
                             <div>
                                 <b>Description:</b><br>
@@ -56,8 +56,16 @@ function ProductPage (props) {
 
                 </div>
             </div>
+          
+         
         )
     
 }
+const mapStateToProps = state => {
+    return{
+        currentUser: state.currentUser
+    }
+    
+}
 
-export default ProductPage;
+export default connect(mapStateToProps, {findCurrentUser})(ProductPage);

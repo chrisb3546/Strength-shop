@@ -1,8 +1,10 @@
 
 import React, { Component } from 'react'
+import { useHistory } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { login }  from '../actions/currentUser'
-import { currentUser } from '../actions/currentUser'
+
+
 
 
 
@@ -18,41 +20,40 @@ class Login extends Component  {
             [e.target.name]: e.target.value
         })
         
-        
-        
-
-    }
+}
 
     
-    
-
-   
-    
-
-     handleSubmit = (e) => {
-        
+handleSubmit = (e) => {
         e.preventDefault()
         this.props.login(this.state)
+        
 
     }
+
     render(){ 
         
         
         return (
+            
         <div>
+            
             <form  onSubmit={this.handleSubmit}>
                 <input type="text" name="username" placeholder="username"  onChange={this.handleChange} ></input>
-                <input type="text" name="password" placeholder="password"  onChange={this.handleChange} ></input>
-                <input type="submit" value= "Log in"/>
+                <input type="password" name="password" placeholder="password"  onChange={this.handleChange} ></input>
+                <input type="submit" value= "Log in" />
         </form>
             
         </div>
+        
+         
+
     )}
    
 }
 
 
-export default connect(null, { login})(Login)
+
+export default connect(null, { login })(Login)
 
 
 

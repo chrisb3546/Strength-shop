@@ -1,16 +1,16 @@
-import React, { Component } from 'react'
-import { connect } from 'react-redux'
-import { logout }  from '../actions/currentUser'
-import { currentUser } from '../actions/currentUser'
+// import React, { Component } from 'react'
+// import { connect } from 'react-redux'
+// import { logout }  from '../actions/currentUser'
+// import { currentUser } from '../actions/currentUser'
 
 
 
-class Logout extends Component  {
+// class Logout extends Component  {
 
-    state = {
-        username:'',
-        password:''
-    }
+//     state = {
+//         username:'',
+//         password:''
+//     }
 
 
     
@@ -19,23 +19,21 @@ class Logout extends Component  {
    
     
 
-     handleSubmit = (e) => {
-        
-
-    }
-    render(){ 
+     
+//     render(){ 
         
         
-        return (
-        <div>
-            <form  onSubmit={this.props.logout}>
-                <input type="submit" value= "Log Out"/>
-        </form>
+//         return (
+//         <div>
+   
+//              <form  onSubmit={this.props.logout}>
+//                 <input type="submit" value= "Log Out"/>
+//         </form> 
             
-        </div>
-    )}
+//         </div>
+//     )}
    
-}
+// }
 
 
-export default connect(null, { logout})(Logout)
+// export default connect(null, { logout})(Logout)

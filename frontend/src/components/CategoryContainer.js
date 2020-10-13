@@ -3,6 +3,7 @@ import {Link} from 'react-router-dom'
 import { connect } from 'react-redux'
 import {fetchCategories} from '../actions/fetchCategories'
 
+
  class CategoryContainer extends Component {
 
     state ={
@@ -12,14 +13,7 @@ import {fetchCategories} from '../actions/fetchCategories'
     }
     componentDidMount (){
         this.props.fetchCategories()
-        // fetch("http://localhost:3001/categories")
-        // .then(res => res.json())
-        // .then(data => this.setState({
-        //     categories: data
-        // }))
-
-    
-       
+  
     }
      closeMenu = () => {
      document.querySelector(".sidebar").classList.remove("open")

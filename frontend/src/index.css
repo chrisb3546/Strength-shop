@@ -41,7 +41,9 @@ body{
 }
 
 .header-links a:hover{
-  color: gray
+  color: gray;
+  cursor: pointer;
+  
 }
 
 .header{
@@ -150,7 +152,8 @@ body{
 }
 
 .product-info-details{
-  flex:1 1 30rem
+  flex:1 1 30rem;
+  font-size: 3rem
 }
 
 /* category-show */
