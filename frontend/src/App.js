@@ -1,19 +1,16 @@
 import React, { Component } from 'react';
-import data from './data'
-import {div, Route, Redirect, Link} from 'react-router-dom'
+import { Route, Redirect, Link} from 'react-router-dom'
 import './App.css';
-import HomePage from './components/HomePage';
+import ProductsContainer from './containers/ProductsContainer'
 import ProductPage from './components/ProductPage'
-import CategoryContainer from './components/CategoryContainer'
 import Category from './components/Category'
-import OrderContainer from './components/OrderContainer'
 import Login from './components/Login'
-import Logout from './components/Logout'
 import Navbar from './components/Navbar'
 import NavbarLoggedOut from './components/NavbarLoggedOut'
 import { connect } from 'react-redux'
 import { findCurrentUser } from './actions/currentUser'
 import Signup from './components/Signup';
+import Cart from './components/Cart';
 
 class App extends Component {
 
@@ -35,9 +32,9 @@ class App extends Component {
            <main className="main">
                <div className="content">
                    <Route  exact path = "/product/:id" component={ProductPage}/>
-                   <Route  exact path= "/"  component={HomePage} />
+                   <Route  exact path= "/"  component={ProductsContainer} />
                    <Route  exact path='/categories/:id' component={Category}/>
-                   <Route  exact path='/orders' component={OrderContainer}/>
+                   <Route  exact path='/cart' component={Cart}/>
                   {!this.props.currentUser ? <Route  exact path= '/login' component={Login}/> : <Redirect to='/'/>} 
                   {!this.props.currentUser ? <Route  exact path= '/signup' component={Signup}/> : <Redirect to='/'/>} 
                </div>

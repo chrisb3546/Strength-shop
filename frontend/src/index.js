@@ -5,9 +5,9 @@ import './index.css';
 import {createStore, applyMiddleware, compose, combineReducers} from 'redux'
 import thunk from 'redux-thunk'
 import {Provider} from 'react-redux'
-import OrderReducer from './reducers/OrderReducer'
 import products from './reducers/products'
 import currentUser from './reducers/currentUser'
+import cart from './reducers/cart'
 
 
 
@@ -20,6 +20,7 @@ const rootReducer = combineReducers({
   products,
   categories,
   currentUser,
+  cart
    
   
 })

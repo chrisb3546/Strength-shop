@@ -1,32 +1,31 @@
 import React, { Component } from 'react'
-import {BrowserRouter, Route, Link} from 'react-router-dom'
-import CategoryContainer from './CategoryContainer'
+import {BrowserRouter, Route, Link, useHistory} from 'react-router-dom'
+import CategoryContainer from '../containers/CategoryContainer'
 import Login from './Login'
-import Logout from './Logout'
 import { logout } from '../actions/currentUser'
 import { connect } from 'react-redux'
 import { findCurrentUser } from '../actions/currentUser'
 
- class Navbar extends Component {
-    openMenu = () => {
+ function Navbar (props) {
+    const openMenu = () => {
         document.querySelector(".sidebar").classList.add("open")
     }
 
-     handleClick = (e) =>{
+     const handleClick = (e) =>{
         e.preventDefault()
-        this.props.logout()
+        props.logout()
         alert("successfully Logged out")
 
     }
 
-    render() {
+    const history = useHistory()
         return (
       <div>
         <div className="grid-container">
        <header className="header">
          <div className="brand">
 
-           <button onClick={this.openMenu}>
+           <button onClick={openMenu}>
              &#9776;
            </button >
            <Link to='/'>Strength Shop</Link>
@@ -34,15 +33,15 @@ import { findCurrentUser } from '../actions/currentUser'
          </div>
          <div className="header-links">
          
-        {this.props.currentUser ? <a href="logout" onClick={this.handleClick} >Log out</a> : <Link to="/login" >Log in</Link>}
+        {props.currentUser ? <a href="logout" onClick={handleClick} >Log out</a> : <Link to="/login" >Log in</Link>}
            <a href="signup">Sign up</a>
-           <Link to='/orders'>Orders</Link>
+           <a onClick={() => history.push('/cart')}>Cart</a>
          </div>
        </header></div>
             </div>
         )
     }
-}
+
 const mapStateToProps = state => {
     return{
       currentUser: state.currentUser
