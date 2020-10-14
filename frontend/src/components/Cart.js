@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
+
  function Cart(props) {
      
     
@@ -30,7 +31,7 @@ import { connect } from 'react-redux'
                 <div>
                     <b>Description:</b><br>
                     </br>
-                    {cartItem.description}
+                    {cartItem.description}<br/>
                     <button name={i} onClick={removeItemFromCart}>Checkout</button>
                 </div>
                 
@@ -45,12 +46,12 @@ import { connect } from 'react-redux'
 
 function removeItemFromCart(e){
     usableCart.splice(e.target.name, 1)
-    // debugger
     let updatedCart = JSON.stringify(usableCart)
     localStorage.setItem('cart', updatedCart)
     let node = document.getElementById(e.target.name)
-    node.remove()
+    node.parentElement.removeChild(node)
     alert("Successfully checked out")
+    
     // iterate over and find matching index to button id
     // new array without previous item
     //use to update local storage
@@ -59,7 +60,7 @@ function removeItemFromCart(e){
     
     return (
         usableCart.length === 0 ? <div>
-            Cart Empty!
+            <h1>Cart Empty!</h1>
         </div>
         :
         <div>

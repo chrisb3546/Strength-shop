@@ -20,7 +20,8 @@ class ProductsContainer extends Component {
               state :{
                   name: product.name,
                   price: product.price,
-                  image: product.image
+                  image: product.image,
+                  description: product.description
                 }
               }}>
               <img className="product-image" src={product.image} alt="product"></img>

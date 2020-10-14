@@ -6,8 +6,7 @@ export function fetchProducts (){
     .then(products => dispatch({
         type: 'FETCH_PRODUCTS',
         payload: products
-    }))
+    })
 
-    }
-    
-}
+    )
+}}
