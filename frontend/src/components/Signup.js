@@ -27,14 +27,13 @@ import { signup } from '../actions/currentUser'
         return (
             <div>
                 <div>
-            <form  onSubmit={this.handleSubmit}>
-                <input type="text" name="email" placeholder="email"  onChange={this.handleChange} ></input>
-                <input type="text" name="username" placeholder="username"  onChange={this.handleChange} ></input>
-                <input type="password" name="password" placeholder="password"  onChange={this.handleChange} ></input>
-                <input type="submit" value= "Sign Up" />
-        </form>
-            
-        </div>
+                    <form  onSubmit={this.handleSubmit}>
+                        <input type="text" name="email" placeholder="email"  onChange={this.handleChange} ></input>
+                        <input type="text" name="username" placeholder="username"  onChange={this.handleChange} ></input>
+                        <input type="password" name="password" placeholder="password"  onChange={this.handleChange} ></input>
+                        <input type="submit" value= "Sign Up" />
+                    </form>
+                </div>
             </div>
         )
     }

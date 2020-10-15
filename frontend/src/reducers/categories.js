@@ -4,7 +4,7 @@ export default (state = {categories:[]}, action) => {
         case "FETCH_CATEGORIES":
             return {categories: action.payload}
             default:
-                return state
+            return state
     }
     
     

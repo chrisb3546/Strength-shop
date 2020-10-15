@@ -7,7 +7,7 @@ import thunk from 'redux-thunk'
 import {Provider} from 'react-redux'
 import products from './reducers/products'
 import currentUser from './reducers/currentUser'
-import cart from './reducers/cart'
+
 
 
 
@@ -20,7 +20,7 @@ const rootReducer = combineReducers({
   products,
   categories,
   currentUser,
-  cart
+  
    
   
 })

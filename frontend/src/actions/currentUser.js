@@ -20,8 +20,7 @@ export const createNewUser = user =>{
 }
 
 export const login = credentials => {
-   
-  return dispatch => {
+   return dispatch => {
         return fetch("http://localhost:3001/login", {
             credentials: "include", 
                 method: "POST",

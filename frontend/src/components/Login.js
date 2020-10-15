@@ -36,13 +36,11 @@ handleSubmit = (e) => {
         return (
             
         <div>
-            
             <form  onSubmit={this.handleSubmit}>
                 <input type="text" name="username" placeholder="username"  onChange={this.handleChange} ></input>
                 <input type="password" name="password" placeholder="password"  onChange={this.handleChange} ></input>
                 <input type="submit" value= "Log in" />
-        </form>
-            
+            </form>
         </div>
         
          

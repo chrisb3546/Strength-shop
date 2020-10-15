@@ -9,34 +9,35 @@ class ProductsContainer extends Component {
       }
     render() {
         return (
+          <div>
             <div>
-                <div>
-        <ul className="products">
-          {
-          this.props.products.products.map(product => <li key={product.id}>
-            <div className="product">
-            <Link to={{
-              pathname:'/product/' + product.id,
-              state :{
-                  name: product.name,
-                  price: product.price,
-                  image: product.image,
-                  description: product.description
+              <ul className="products">
+                {
+                  this.props.products.products.map(product => 
+                  <li key={product.id}>
+                    <div className="product">
+                    <Link to={{
+                      pathname:'/product/' + product.id,
+                      state :{
+                        name: product.name,
+                        price: product.price,
+                        image: product.image,
+                        description: product.description
+                      }
+                    }}>
+                      <img className="product-image" src={product.image} alt="product"></img>
+                    </Link>
+                    <div className="product-name">
+                      {product.name}
+                    </div>
+                    <div className="product-price">${product.price}
+                    </div>
+                    </div>
+                  </li>)
                 }
-              }}>
-              <img className="product-image" src={product.image} alt="product"></img>
-              </Link>
-                <div className="product-name">
-                  {product.name}
-                </div>
-                <div className="product-price">${product.price}</div>
-                </div>
-                </li>)
-            }
-        </ul>
-      </div>
-      
+              </ul>
             </div>
+          </div>
         )
     }
 }

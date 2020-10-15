@@ -1,25 +1,23 @@
 import React from 'react'
-import { connect } from 'react-redux'
 
 
- function Cart(props) {
-     
+
+ function Cart() {
+    const cart = JSON.parse(localStorage.getItem('cart'))
     
+    let newArray = []
+    
+    newArray.push(cart)
+    
+    const usableCart = newArray[0]
+    
+    console.log('cart', usableCart)
 
-   
-     
-   const cart = JSON.parse(localStorage.getItem('cart'))
-   let newArray = []
-   newArray.push(cart)
-   const usableCart = newArray[0]
-   console.log('cart', usableCart)
-
-   const renderedCart = usableCart.map((cartItem, i)=>  <div id={i}>
+   const renderedCart = usableCart.map((cartItem, i) =>  <div id={i}>
     <div className="product-info">
         <div className="product-info-img">
-        <img  src={cartItem.image}></img>
+            <img  src={cartItem.image}></img>
         </div>
-        
         <div className="product-info-details">
             <ul>
                 <li>
@@ -34,14 +32,9 @@ import { connect } from 'react-redux'
                     {cartItem.description}<br/>
                     <button name={i} onClick={removeItemFromCart}>Checkout</button>
                 </div>
-                
-                    
             </ul>
-
         </div>
-        
-
-    </div>
+     </div>
 </div> )
 
 function removeItemFromCart(e){
@@ -59,13 +52,13 @@ function removeItemFromCart(e){
   }
     
     return (
-        usableCart.length === 0 ? <div>
+        usableCart.length === 0 ? 
+        <div>
             <h1>Cart Empty!</h1>
         </div>
         :
         <div>
             {renderedCart}
-            
         </div>
     )
 }
@@ -75,4 +68,4 @@ const mapStateToProps = state => {
         cart: state.cart
     }
 }
-export default connect(mapStateToProps)(Cart)
+export default Cart

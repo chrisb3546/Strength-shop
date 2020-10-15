@@ -22,9 +22,9 @@ import {fetchCategories} from '../actions/fetchCategories'
         
 
     render() {
-        console.log(this.props)
         this.props.categories.categories.map(cat => console.log(cat))
-        let catArray = this.props.categories.categories.map(cat => <li className= "sidebar-text"key={cat.id}>
+        let catArray = this.props.categories.categories.map(cat => 
+        <li className= "sidebar-text"key={cat.id}>
             <Link to={{
                 pathname: '/categories/'+ cat.id,
                 state:{
@@ -34,24 +34,17 @@ import {fetchCategories} from '../actions/fetchCategories'
             }}onClick={this.closeMenu}>
                 {cat.name}
             </Link>
-            
-           
-           
-            </li>
+        </li>
             )
         return (
             <div>
                <aside className="sidebar">
-        <h3>Equipment Categories</h3>
-        <button className="sidebar-close-button" onClick={this.closeMenu}>X</button>
-        <ul>
-         
-          {catArray}
-
-         
-
-       </ul>
-      </aside>
+                    <h3>Equipment Categories</h3>
+                    <button className="sidebar-close-button" onClick={this.closeMenu}>X</button>
+                <ul>
+                    {catArray}
+                </ul>
+                </aside>
             </div>
         )
     }
