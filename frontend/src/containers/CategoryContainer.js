@@ -22,7 +22,7 @@ import {fetchCategories} from '../actions/fetchCategories'
         
 
     render() {
-        this.props.categories.categories.map(cat => console.log(cat))
+       
         let catArray = this.props.categories.categories.map(cat => 
         <li className= "sidebar-text"key={cat.id}>
             <Link to={{

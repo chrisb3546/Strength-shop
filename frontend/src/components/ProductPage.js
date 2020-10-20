@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import {BrowserRouter, Route, Link} from 'react-router-dom'
 import { connect } from "react-redux"
 import { findCurrentUser } from '../actions/currentUser'
-import Login from './Login'
+import { addItemToCart } from  '../actions/cart'
 
 
 
@@ -10,19 +10,24 @@ import Login from './Login'
 function ProductPage (props) {
     const product = props.location.state
     
-    
    
-    console.log("props", props)
+   
+    
 
     function saveToLocalStorage (e){
+        debugger
+        
         if (props.currentUser){
             try{   
+               
                 let existingCartProducts = JSON.parse(localStorage.getItem('cart'))
+                
                 if (existingCartProducts === null) existingCartProducts = []
                     existingCartProducts.push(product)
                     localStorage.setItem('cart', JSON.stringify(existingCartProducts))
+                    props.addItemToCart(product)
                     alert("Added To Cart")
-            } 
+            }   
             catch(e){
                 console.log(e)
             }
@@ -30,7 +35,10 @@ function ProductPage (props) {
         else {
         alert("Please Log in!")
         }
+        
+
     }
+    
     
     
            
@@ -53,7 +61,8 @@ function ProductPage (props) {
                                 <b>Description:</b><br>
                                 </br>
                                 <h4>{product.description}</h4>
-                                <button onClick={(e) => saveToLocalStorage()}>Add To Order</button>
+                                {props.cart.find(p => p.name === product.name) ? <h5>Product In cart!</h5> :    
+                                <button onClick={saveToLocalStorage}>Add To Order</button>}
                             </div>
                         </ul>
                     </div>
@@ -67,9 +76,10 @@ function ProductPage (props) {
 const mapStateToProps = state => {
     return{
         products: state.products,
-        currentUser: state.currentUser
+        currentUser: state.currentUser,
+        cart: state.cart
     }
     
 }
 
-export default connect(mapStateToProps, { findCurrentUser})(ProductPage);
+export default connect(mapStateToProps, { findCurrentUser, addItemToCart})(ProductPage);

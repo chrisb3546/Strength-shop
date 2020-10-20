@@ -1,65 +1,79 @@
-import React from 'react'
+import React, { useEffect }from 'react'
+import { useHistory } from 'react-router-dom'
+import { connect } from 'react-redux'
+import { setShoppingCart, removeItemFromCart, checkoutCart} from '../actions/cart'
+import ProductPage from './ProductPage'
 
 
-
- function Cart() {
+function Cart(props) {
+    let updatedCart = (props.cart)
+    localStorage.setItem('cart', JSON.stringify(updatedCart))
     const cart = JSON.parse(localStorage.getItem('cart'))
-    
     let newArray = []
-    
     newArray.push(cart)
-    
     const usableCart = newArray[0]
+    console.log("CART PROPS", props.cart)
+   
+  
+      
     
-    console.log('cart', usableCart)
-
-   const renderedCart = usableCart.map((cartItem, i) =>  <div id={i}>
-    <div className="product-info">
-        <div className="product-info-img">
-            <img  src={cartItem.image}></img>
+    
+    
+   const renderedCart =  props.cart.map((cartItem, i) =>  <div id={i}>
+        <div className="product-info">
+            <div className="product-info-img">
+                <img  src={cartItem.image}></img>
+            </div>
+            <div className="product-info-details">
+                <ul>
+                    <li>
+                        <h3>{cartItem.name}</h3>
+                    </li>
+                    <li>
+                        <b>$ {cartItem.price}</b>
+                    </li>
+                    <br/>
+                    <div>
+                        <b>Description:</b><br>
+                        </br>
+                        {cartItem.description}
+                        <br/>
+                        <button name={cartItem.name} id={i} onClick={removeItemFromCart}>Remove</button>
+                    </div>
+                </ul>
+            </div>
         </div>
-        <div className="product-info-details">
-            <ul>
-                <li>
-                    <h3>{cartItem.name}</h3>
-                </li>
-                <li>
-                    <b>$ {cartItem.price}</b>
-                </li>
-                <div>
-                    <b>Description:</b><br>
-                    </br>
-                    {cartItem.description}<br/>
-                    <button name={i} onClick={removeItemFromCart}>Checkout</button>
-                </div>
-            </ul>
-        </div>
-     </div>
-</div> )
+    </div>
+    )
 
-function removeItemFromCart(e){
-    usableCart.splice(e.target.name, 1)
-    let updatedCart = JSON.stringify(usableCart)
-    localStorage.setItem('cart', updatedCart)
-    let node = document.getElementById(e.target.name)
-    node.parentElement.removeChild(node)
-    alert("Successfully checked out")
-    
-    // iterate over and find matching index to button id
-    // new array without previous item
-    //use to update local storage
-        
-  }
-    
+   
+
+    function removeItemFromCart(e){
+        props.removeItemFromCart(e.target.name)
+        alert("Item removed from cart")
+    }
+
+  
+
+  function checkOutCart(){
+        props.checkoutCart()
+        alert("Successfully checked out, (this is would send you to checkout screen in real store)")
+   }
+  
     return (
-        usableCart.length === 0 ? 
+        
+       props.cart.length === 0 ? 
         <div>
             <h1>Cart Empty!</h1>
         </div>
         :
         <div>
             {renderedCart}
+            <div className="checkout">
+                <button  onClick={checkOutCart}>Checkout</button>
+            </div>
         </div>
+        
     )
 }
 
@@ -68,4 +82,4 @@ const mapStateToProps = state => {
         cart: state.cart
     }
 }
-export default Cart
+export default connect(mapStateToProps, { setShoppingCart, removeItemFromCart, checkoutCart })(Cart)

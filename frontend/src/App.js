@@ -11,11 +11,14 @@ import { connect } from 'react-redux'
 import { findCurrentUser } from './actions/currentUser'
 import Signup from './components/Signup';
 import Cart from './components/Cart';
+import { setShoppingCart } from './actions/cart'
+
 
 class App extends Component {
 
   componentDidMount(){
     this.props.findCurrentUser()
+    this.getLocalStorage()
 
   }
   
@@ -23,9 +26,22 @@ class App extends Component {
     document.querySelector(".sidebar").classList.add("open")
   }
 
+  getLocalStorage(){
+    const cart = JSON.parse(localStorage.getItem('cart'))
+    let newArray = []
+    newArray.push(cart)
+    const usableCart = newArray[0]
+    this.props.setShoppingCart(usableCart)
+  }
+
+  
+
+
   
   render(){
   
+    this.getLocalStorage()
+    
     return (
        <div>
          {this.props.currentUser ? <Navbar/> : <NavbarLoggedOut/>}
@@ -46,8 +62,10 @@ class App extends Component {
 
 const mapStateToProps = state => {
   return{
-    currentUser: state.currentUser
+    currentUser: state.currentUser,
+    
+
   }
 }
 
-export default  connect(mapStateToProps, {findCurrentUser}) (App)
+export default  connect(mapStateToProps, {findCurrentUser, setShoppingCart}) (App)
